@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Kotlin</string>
+    <string name="recommend">推荐</string>
+    <string name="video">视频</string>
+    <string name="NBA">NBA</string>
+    <string name="Premiership">英超</string>
+    <string name="La_Liga">西甲</string>
+    <string name="Bundesliga">德甲</string>
+    <string name="French">法甲</string>
+    <string name="Champions_League">欧冠</string>
+    <string name="Serie_A">意甲</string>
+    <string name="NHL">NHL</string>
+    <string name="NFL">NFL</string>
+    <string name="Super_China">中超</string>
+    <string name="AFC">亚冠</string>
+    <string name="Integrated">综合</string>
+    <string name="tab_news">首页</string>
+    <string name="tab_match">赛程</string>
+    <string name="tab_discover">发现</string>
+    <string name="tab_me">我的</string>
 </resources>
