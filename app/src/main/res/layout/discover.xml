@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <cn.com.dean.kotlin.view.TitleView
+        android:id="@+id/discover_title_View"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/discover_discover"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/tab_discover"
+            android:textColor="@drawable/tab_discover_text_selector"
+            android:textSize="14sp"/>
+
+    </cn.com.dean.kotlin.view.TitleView>
+
+    <RelativeLayout
+        android:id="@+id/news_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/discover_title_View"
+        android:background="@color/content_bg_color">
+
+    </RelativeLayout>
+
+</RelativeLayout>

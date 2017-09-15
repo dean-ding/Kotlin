@@ -18,4 +18,7 @@
     <string name="tab_match">赛程</string>
     <string name="tab_discover">发现</string>
     <string name="tab_me">我的</string>
+    <string name="match_title_match">赛事</string>
+    <string name="match_title_all">全部</string>
+    <string name="match_title_attention">关注</string>
 </resources>

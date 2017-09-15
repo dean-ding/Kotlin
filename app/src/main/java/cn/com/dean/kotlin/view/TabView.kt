@@ -8,16 +8,17 @@ import android.view.ViewGroup
 /**
  * Created: tvt on 17/9/14 11:17
  */
-open class TabView : ViewGroup, View.OnClickListener {
+class TabView : ViewGroup, View.OnClickListener {
     constructor(context: Context) : this(context, null)
 
-    constructor(context: Context, attributeSet: AttributeSet?) : super(context, attributeSet)
+    constructor(context: Context, attributeSet: AttributeSet?) : super(context, attributeSet) {
+        setOnClickListener(this)
+    }
 
     private lateinit var mContext: Context
 
     init {
         mContext = context
-        setOnClickListener(this)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -76,10 +77,10 @@ open class TabView : ViewGroup, View.OnClickListener {
     }
 
     interface TabCallback {
-        fun onTabClick(v: View?)
+        fun onTabClick(v: View)
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
         if (mCallback != null) {
             mCallback!!.onTabClick(v)
         }

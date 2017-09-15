@@ -3,9 +3,12 @@ package cn.com.dean.kotlin.view
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
+import android.util.TypedValue.COMPLEX_UNIT_SP
 import android.view.*
 import android.widget.Scroller
+import android.widget.TextView
 import cn.com.dean.kotlin.R
 
 /**
@@ -40,12 +43,14 @@ class TitleView : ViewGroup {
             return
         }
         for (i in 0 until childCount) {
-            val child = getChildAt(i)
+            val child = getChildAt(i) as TextView
             if (child == v) {
                 child.isSelected = true
+                child.setTextSize(COMPLEX_UNIT_SP, 15F)
                 mSelectedIndex = i
             } else {
                 child.isSelected = false
+                child.setTextSize(COMPLEX_UNIT_SP, 14F)
             }
         }
         invalidate()
@@ -123,7 +128,7 @@ class TitleView : ViewGroup {
         val top = measuredHeight * 4 / 5
 
         val paint = Paint()
-        paint.color = resources.getColor(R.color.tab_text_color_current)
+        paint.color = ContextCompat.getColor(mContext, R.color.tab_text_color_current)
         canvas.drawRect(left.toFloat(), top.toFloat(), (left + width).toFloat(), (top + height).toFloat(), paint)
     }
 
@@ -155,7 +160,7 @@ class TitleView : ViewGroup {
                 mLastInterceptX = x
                 mLastInterceptY = y
             }
-            MotionEvent.ACTION_UP -> {
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                 intercepted = false
                 mLastInterceptX = 0F
                 mLastInterceptY = 0F
@@ -190,10 +195,11 @@ class TitleView : ViewGroup {
                 mLastX = x
                 mLastY = y
             }
-            MotionEvent.ACTION_UP -> {
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                 mVelocityTracker.computeCurrentVelocity(1000)
                 val xVelocity = mVelocityTracker.xVelocity
                 if (Math.abs(xVelocity) < 1000) {
+                    mVelocityTracker.clear()
                     return true
                 }
                 var childIndex = scrollX / mChildWidth + if (xVelocity > 0) -1 else 1

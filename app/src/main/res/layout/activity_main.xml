@@ -6,144 +6,12 @@
     android:layout_height="match_parent"
     tools:context="cn.com.dean.kotlin.MainActivity">
 
-    <cn.com.dean.kotlin.view.TitleView
-        android:id="@+id/title_View"
+    <FrameLayout
+        android:id="@+id/fragments"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:background="@android:color/white">
-
-        <TextView
-            android:id="@+id/recommend"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:onClick="OnTitleClick"
-            android:text="@string/recommend"
-            android:textColor="@drawable/tab_discover_text_selector"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/video"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:onClick="OnTitleClick"
-            android:text="@string/video"
-            android:textColor="@drawable/tab_discover_text_selector"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/nba"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:onClick="OnTitleClick"
-            android:text="@string/NBA"
-            android:textColor="@drawable/tab_discover_text_selector"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/premiership"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:onClick="OnTitleClick"
-            android:text="@string/Premiership"
-            android:textColor="@drawable/tab_discover_text_selector"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/la_liga"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:onClick="OnTitleClick"
-            android:text="@string/La_Liga"
-            android:textColor="@drawable/tab_discover_text_selector"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/bundesliga"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:onClick="OnTitleClick"
-            android:text="@string/Bundesliga"
-            android:textColor="@drawable/tab_discover_text_selector"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/champions_league"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:onClick="OnTitleClick"
-            android:text="@string/Champions_League"
-            android:textColor="@drawable/tab_discover_text_selector"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/y"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:onClick="OnTitleClick"
-            android:text="@string/Serie_A"
-            android:textColor="@drawable/tab_discover_text_selector"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/r"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:onClick="OnTitleClick"
-            android:text="@string/NHL"
-            android:textColor="@drawable/tab_discover_text_selector"
-            android:textSize="14sp"/>
-
-        <TextView
-            android:id="@+id/w"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:onClick="OnTitleClick"
-            android:text="@string/NFL"
-            android:textColor="@drawable/tab_discover_text_selector"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/s"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:onClick="OnTitleClick"
-            android:text="@string/Super_China"
-            android:textColor="@drawable/tab_discover_text_selector"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/q"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:onClick="OnTitleClick"
-            android:text="@string/AFC"
-            android:textColor="@drawable/tab_discover_text_selector"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/x"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:onClick="OnTitleClick"
-            android:text="@string/Integrated"
-            android:textColor="@drawable/tab_discover_text_selector"
-            android:textSize="16sp"/>
-
-    </cn.com.dean.kotlin.view.TitleView>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomView"
+        android:background="@color/content_bg_color"/>
 
     <LinearLayout
         android:id="@+id/bottomView"
@@ -233,16 +101,5 @@
                 android:textSize="10sp"/>
         </cn.com.dean.kotlin.view.TabView>
     </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/content_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottomView"
-        android:layout_below="@id/title_View"
-        android:background="@color/content_bg_color"
-        android:orientation="horizontal">
-
-    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>
