@@ -22,7 +22,7 @@ class TitleView : ViewGroup {
 
     private var mChildWidth: Int = 0
     private var mChildSize: Int = 0
-    private var mContext: Context
+    private var mContext: Context = context.applicationContext
     private var mLastInterceptX: Float = 0F
     private var mLastInterceptY: Float = 0F
     private var mLastX: Float = 0F
@@ -32,8 +32,6 @@ class TitleView : ViewGroup {
     private var mSelectedIndex: Int = 0
 
     init {
-        mContext = context.applicationContext
-
         mScroller = Scroller(mContext)
         mVelocityTracker = VelocityTracker.obtain()
     }
