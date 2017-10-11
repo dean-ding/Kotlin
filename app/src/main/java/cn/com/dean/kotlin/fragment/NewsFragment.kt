@@ -9,11 +9,17 @@ import android.view.ViewGroup
 import cn.com.dean.kotlin.R
 import cn.com.dean.kotlin.helper.GlobalUnit
 import cn.com.dean.kotlin.resp.RespBase
-import cn.com.dean.kotlin.thread.PoolThread
 import cn.com.dean.kotlin.thread.PoolThreadCallback
 import cn.com.dean.kotlin.view.TitleView
 import cn.com.dean.server.NetType
+import com.safframework.log.L
+import com.squareup.okhttp.Callback
+import com.squareup.okhttp.OkHttpClient
+import com.squareup.okhttp.Request
+import com.squareup.okhttp.Response
 import java.io.File
+import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 /**
  * Created: tvt on 17/9/13 14:11
@@ -45,7 +51,25 @@ class NewsFragment : Fragment(), PoolThreadCallback {
 
     private fun loadData(type: String, subType: String) {
         val url = GlobalUnit.HTTP_URL_BASE + File.separator + type + "&" + subType
-        PoolThread.getInstance().GetDelayed(id, 0, 20, url, this)
+
+        val okHttpClient = OkHttpClient()
+        okHttpClient.setConnectTimeout(20, TimeUnit.SECONDS)
+        okHttpClient.setWriteTimeout(10, TimeUnit.SECONDS)
+        okHttpClient.setReadTimeout(10, TimeUnit.SECONDS)
+
+        val request: Request = Request.Builder().url(url).addHeader("Connection", "close").build()
+        val call = okHttpClient.newCall(request)
+        call.enqueue(OkHttpCallback())
+    }
+
+    class OkHttpCallback : Callback {
+        override fun onResponse(response: Response) {
+            L.d("onResponse-->" + response.body().string())
+        }
+
+        override fun onFailure(request: Request?, e: IOException?) {
+            L.d("onFailure-->" + e.toString())
+        }
     }
 
     override fun onPoolThreadRet(id: Int, code: Int, respBase: RespBase?) {

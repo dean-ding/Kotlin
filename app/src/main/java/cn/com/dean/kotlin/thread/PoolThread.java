@@ -1,6 +1,7 @@
 package cn.com.dean.kotlin.thread;
 
-import com.google.gson.Gson;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -63,33 +64,35 @@ public class PoolThread
                 // 创建一个Request
                 final Request request = new Request.Builder().url(url).build();
                 RespBase respBean = null;
-                try
+                Call call = mOkHttpClient.newCall(request);
+                //请求加入调度
+                call.enqueue(new Callback()
                 {
-                    Response response = mOkHttpClient.newCall(request).execute();
-                    if (response.isSuccessful())
+                    @Override
+                    public void onFailure(Request request, IOException e)
                     {
-                        String jsonStr = response.body().string();
-                        System.out.println("htmlStr = " + jsonStr);
+                        System.out.println("onFailure " + e.toString());
+                    }
 
-                        Gson gson = new Gson();
-                        respBean = gson.fromJson(jsonStr, RespBase.class);
-                        //登陆Token已失效时，
-                        if (respBean.getStatus().getErrcode() == 1)
-                        {
-                            // TODO: 2016/5/15
-                            //清空本地SP中用户和任务，回到登陆页面
-                        }
-                    }
-                    else
+                    @Override
+                    public void onResponse(final Response response) throws IOException
                     {
-                        throw new IOException("Unexpected code " + response);
+                        System.out.println("onResponse " + response.isSuccessful());
                     }
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                    code = -2;
-                }
+                });
+                //                    Response response = mOkHttpClient.newCall(request).execute();
+                //                    if (response.isSuccessful())
+                //                    {
+                //                        String jsonStr = response.body().string();
+                //                        System.out.println("htmlStr = " + jsonStr);
+                //
+                //                        Gson gson = new Gson();
+                //                        respBean = gson.fromJson(jsonStr, RespBase.class);
+                //                    }
+                //                    else
+                //                    {
+                //                        throw new IOException("Unexpected code " + response);
+                //                    }
                 if (callback != null)
                 {
                     callback.onPoolThreadRet(id, code, respBean);

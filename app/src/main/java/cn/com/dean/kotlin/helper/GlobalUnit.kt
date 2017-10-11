@@ -6,7 +6,7 @@ package cn.com.dean.kotlin.helper
 class GlobalUnit {
 
     companion object {
-        public val HTTP_URL_BASE: String = "http://192.168.8.139:8080"
+        val HTTP_URL_BASE: String = "http://192.168.199.101:8080"
     }
 
 }
