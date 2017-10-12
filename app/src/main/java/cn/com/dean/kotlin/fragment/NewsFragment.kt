@@ -12,6 +12,8 @@ import cn.com.dean.kotlin.resp.RespBase
 import cn.com.dean.kotlin.thread.PoolThreadCallback
 import cn.com.dean.kotlin.view.TitleView
 import cn.com.dean.server.NetType
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.safframework.log.L
 import com.squareup.okhttp.Callback
 import com.squareup.okhttp.OkHttpClient
@@ -57,14 +59,23 @@ class NewsFragment : Fragment(), PoolThreadCallback {
         okHttpClient.setWriteTimeout(10, TimeUnit.SECONDS)
         okHttpClient.setReadTimeout(10, TimeUnit.SECONDS)
 
-        val request: Request = Request.Builder().url(url).addHeader("Connection", "close").build()
+        val request: Request = Request.Builder().url(url).build()
         val call = okHttpClient.newCall(request)
         call.enqueue(OkHttpCallback())
     }
 
     class OkHttpCallback : Callback {
         override fun onResponse(response: Response) {
-            L.d("onResponse-->" + response.body().string())
+            if (!response.isSuccessful) {
+                return
+            }
+            val result = response.body().string()
+            L.d("onResponse-->" + response.isSuccessful + " " + response.body().contentLength() + "-->" + result)
+            val data: List<RecommendResponse> = Gson().fromJson(result, object : TypeToken<List<RecommendResponse>>() {}.type)
+            for (i in 0 until data.size) {
+                val recommend: cn.com.dean.kotlin.fragment.NewsFragment.RecommendResponse = data[i]
+                L.d(String.format("data[%d] = %s", i, recommend.toString()))
+            }
         }
 
         override fun onFailure(request: Request?, e: IOException?) {
@@ -76,5 +87,13 @@ class NewsFragment : Fragment(), PoolThreadCallback {
         if (respBase == null) {
             return
         }
+    }
+
+    private class RecommendResponse {
+        var name: String = ""
+        var defaultVersionName: String = "1.1"
+        var time: Long = 0
+
+        override fun toString(): String = "name->$name,defaultVersionName->$defaultVersionName,time->$time"
     }
 }

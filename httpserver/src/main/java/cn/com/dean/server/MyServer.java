@@ -1,6 +1,7 @@
 package cn.com.dean.server;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -38,27 +39,24 @@ public class MyServer
                 continue;
             }
             String method = line.substring(0, 4).trim();
-            OutputStream out = socket.getOutputStream();
+            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             String requestPath = line.split(" ")[1];
-            System.out.println(requestPath);
-            String response = "";
+            System.out.println(line + "---->" + requestPath);
             String result = "";
             if ("GET".equalsIgnoreCase(method))
             {
                 result = ParseData.parseData(requestPath);
-                if (result.equals(""))
-                {
-                    result = "HelloWorld";
-                }
-                result += "\r\n";
+                result += "\n";
             }
-            response += ("HTTP/1.0 200 OK");// 返回应答消息,并结束应答
-            response += ("Content-Type: text/json");
-            response += ("Content-Length:" + result.length());// 返回内容字节数
-            response += ("Charsert:" + "GB2312");
-            out.write(response.getBytes("GB2312"));
-            out.write(result.getBytes("GB2312"));
+            String response = "HTTP/1.0 200 OK\r\n";// 返回应答消息,并结束应答
+            response += "Content-Type: application/json\r\n";
+            response += "Content-Length:" + result.length() + "\r\n";// 返回内容字节数
+            response += "Charset:UTF-8\r\n";
+            response += "\n";
+            response += result;
+            out.write(response.getBytes("UTF-8"));
             out.flush();
+            //doGet(out);
             out.close();
             reader.close();
             socket.close();
@@ -67,7 +65,7 @@ public class MyServer
     }
 
     //处理GET请求
-    private void doGet(DataInputStream reader, OutputStream out) throws Exception
+    private void doGet(OutputStream out) throws Exception
     {
         String fileName = "./httpserver/upload.html";
         if (new File(fileName).exists())
@@ -80,14 +78,13 @@ public class MyServer
             String response = ("HTTP/1.0 200 OK");// 返回应答消息,并结束应答
             response += ("Content-Type: text/html");
             response += ("Content-Length:" + fileIn.available());// 返回内容字节数
-            response += ("Charsert:" + "UTF-8" + "\r\n");
-            out.write(response.getBytes("GB2312"));
+            response += ("Charset:" + "UTF-8");
+            out.write(response.getBytes("UTF-8"));
             out.write(buf);
-            System.out.println("last " + buf[buf.length - 2] + buf[buf.length - 1]);
+            System.out.println("last " + buf[buf.length - 4] + buf[buf.length - 3] + buf[buf.length - 2] + buf[buf.length - 1]);
             out.flush();
             out.close();
             fileIn.close();
-            reader.close();
             System.out.println("request complete.");
         }
     }
