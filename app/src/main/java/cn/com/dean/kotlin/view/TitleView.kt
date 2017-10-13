@@ -232,4 +232,6 @@ class TitleView : ViewGroup {
         super.onDetachedFromWindow()
     }
 
+    fun GetCount(): Int = childCount
+
 }

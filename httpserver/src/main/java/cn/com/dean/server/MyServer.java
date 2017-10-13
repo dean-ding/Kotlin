@@ -13,6 +13,8 @@ public class MyServer
 {
     private String PATH = "";
     private int mPort = 80;
+    private ServerSocket mServerSocket;
+    private String CharsetType = "UTF-8";
 
     public MyServer(String requestPath, int port)
     {
@@ -22,14 +24,17 @@ public class MyServer
 
     public void service() throws Exception
     {
-        ServerSocket serverSocket = new ServerSocket(this.mPort);
+        if (mServerSocket == null)
+        {
+            mServerSocket = new ServerSocket(this.mPort);
+        }
         System.out.println("server is ok.");
         //开启serverSocket等待用户请求到来，然后根据请求的类别作处理
         //在这里我只针对GET和POST作了处理
         //其中POST具有解析单个附件的能力
         while (true)
         {
-            Socket socket = serverSocket.accept();
+            Socket socket = mServerSocket.accept();
             System.out.println("new request coming.");
             DataInputStream reader = new DataInputStream((socket.getInputStream()));
             String line = reader.readLine();
@@ -48,13 +53,10 @@ public class MyServer
                 result = ParseData.parseData(requestPath);
                 result += "\n";
             }
-            String response = "HTTP/1.0 200 OK\r\n";// 返回应答消息,并结束应答
-            response += "Content-Type: application/json\r\n";
-            response += "Content-Length:" + result.length() + "\r\n";// 返回内容字节数
-            response += "Charset:UTF-8\r\n";
-            response += "\n";
-            response += result;
-            out.write(response.getBytes("UTF-8"));
+            byte[] data = result.getBytes(CharsetType);
+            String response = getHeader(data.length);
+            out.write(response.getBytes(CharsetType));
+            out.write(data);
             out.flush();
             //doGet(out);
             out.close();
@@ -62,6 +64,16 @@ public class MyServer
             socket.close();
             System.out.println("socket closed.");
         }
+    }
+
+    private String getHeader(int length)
+    {
+        String response = "HTTP/1.0 200 OK\r\n";// 返回应答消息,并结束应答
+        response += "Content-Type: application/json\r\n";
+        response += "Content-Length:" + length + "\r\n";// 返回内容字节数
+        response += "Charset:" + CharsetType + "\r\n";
+        response += "\n";
+        return response;
     }
 
     //处理GET请求

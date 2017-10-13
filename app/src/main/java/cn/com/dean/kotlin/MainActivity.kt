@@ -9,7 +9,6 @@ import cn.com.dean.kotlin.fragment.MatchFragment
 import cn.com.dean.kotlin.fragment.MeFragment
 import cn.com.dean.kotlin.fragment.NewsFragment
 import cn.com.dean.kotlin.view.TabView
-import com.safframework.log.L
 
 class MainActivity : Activity(), TabView.TabCallback {
 
@@ -74,7 +73,6 @@ class MainActivity : Activity(), TabView.TabCallback {
     }
 
     private fun addFragment(index: Int) {
-        L.i(String.format("current thread id is %s",Thread.currentThread().name))
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         when (index) {
             FRAGMENT.NEWS -> {

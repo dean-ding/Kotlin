@@ -12,25 +12,35 @@ public class News
 {
     private static class RecommendResponse
     {
-        String name = "";
-        String defaultVersionName = "1.1";
+        String title = "";
+        String subTitle = "";
+        List<String> images = new ArrayList<>();
+        String url = "";
         long time = 0;
+        int type = 0;
     }
 
     public static String GetRecommendData()
     {
+        String url = "http://www.easyicon.net/api/resizeApi.php?id=1209120&size=128";
         List<RecommendResponse> data = new ArrayList<>();
         {
             RecommendResponse recommendResponse = new RecommendResponse();
-            recommendResponse.name = "US112";
-            recommendResponse.defaultVersionName = "1.2.1";
-            recommendResponse.time = 201710111658L;
+            recommendResponse.title = "玫瑰绽放";
+            recommendResponse.subTitle = "罗斯";
+            recommendResponse.time = System.currentTimeMillis();
+            recommendResponse.images.add(url);
+            recommendResponse.url = "http://www.easyicon.net/api/resizeApi.php?id=1209120&size=128";
+            recommendResponse.type = 0;
             data.add(recommendResponse);
 
             recommendResponse = new RecommendResponse();
-            recommendResponse.name = "CA23";
-            recommendResponse.defaultVersionName = "1.2.0";
-            recommendResponse.time = 201710111658L;
+            recommendResponse.title = "玫瑰绽放2";
+            recommendResponse.subTitle = "罗斯";
+            recommendResponse.time = System.currentTimeMillis();
+            recommendResponse.images.add(url);
+            recommendResponse.url = "http://www.easyicon.net/api/resizeApi.php?id=1207955&size=128";
+            recommendResponse.type = 1;
             data.add(recommendResponse);
         }
         Gson gson = new Gson();

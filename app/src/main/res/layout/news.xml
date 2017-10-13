@@ -139,6 +139,116 @@
         android:layout_below="@id/news_title_View"
         android:background="@color/content_bg_color">
 
+        <!--<ListView-->
+            <!--android:id="@+id/list1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:cacheColorHint="@android:color/transparent"-->
+            <!--android:divider="@null"-->
+            <!--android:dividerHeight="0dp"-->
+            <!--android:paddingBottom="1dp"-->
+            <!--android:paddingTop="1dp"/>-->
+
+        <!--<ListView-->
+            <!--android:id="@+id/list2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:cacheColorHint="@android:color/transparent"-->
+            <!--android:divider="@null"-->
+            <!--android:dividerHeight="0dp"-->
+            <!--android:paddingBottom="1dp"-->
+            <!--android:paddingTop="1dp"/>-->
+
+        <!--<ListView-->
+            <!--android:id="@+id/list3"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:cacheColorHint="@android:color/transparent"-->
+            <!--android:divider="@null"-->
+            <!--android:dividerHeight="0dp"-->
+            <!--android:paddingBottom="1dp"-->
+            <!--android:paddingTop="1dp"/>-->
+
+        <!--<ListView-->
+            <!--android:id="@+id/list4"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:cacheColorHint="@android:color/transparent"-->
+            <!--android:divider="@null"-->
+            <!--android:dividerHeight="0dp"-->
+            <!--android:paddingBottom="1dp"-->
+            <!--android:paddingTop="1dp"/>-->
+
+        <!--<ListView-->
+            <!--android:id="@+id/list5"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:cacheColorHint="@android:color/transparent"-->
+            <!--android:divider="@null"-->
+            <!--android:dividerHeight="0dp"-->
+            <!--android:paddingBottom="1dp"-->
+            <!--android:paddingTop="1dp"/>-->
+
+        <!--<ListView-->
+            <!--android:id="@+id/list6"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:cacheColorHint="@android:color/transparent"-->
+            <!--android:divider="@null"-->
+            <!--android:dividerHeight="0dp"-->
+            <!--android:paddingBottom="1dp"-->
+            <!--android:paddingTop="1dp"/>-->
+
+        <!--<ListView-->
+            <!--android:id="@+id/list7"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:cacheColorHint="@android:color/transparent"-->
+            <!--android:divider="@null"-->
+            <!--android:dividerHeight="0dp"-->
+            <!--android:paddingBottom="1dp"-->
+            <!--android:paddingTop="1dp"/>-->
+
+        <!--<ListView-->
+            <!--android:id="@+id/list8"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:cacheColorHint="@android:color/transparent"-->
+            <!--android:divider="@null"-->
+            <!--android:dividerHeight="0dp"-->
+            <!--android:paddingBottom="1dp"-->
+            <!--android:paddingTop="1dp"/>-->
+
+        <!--<ListView-->
+            <!--android:id="@+id/list9"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:cacheColorHint="@android:color/transparent"-->
+            <!--android:divider="@null"-->
+            <!--android:dividerHeight="0dp"-->
+            <!--android:paddingBottom="1dp"-->
+            <!--android:paddingTop="1dp"/>-->
+
+        <!--<ListView-->
+            <!--android:id="@+id/list10"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:cacheColorHint="@android:color/transparent"-->
+            <!--android:divider="@null"-->
+            <!--android:dividerHeight="0dp"-->
+            <!--android:paddingBottom="1dp"-->
+            <!--android:paddingTop="1dp"/>-->
+
+        <!--<ListView-->
+            <!--android:id="@+id/list11"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:cacheColorHint="@android:color/transparent"-->
+            <!--android:divider="@null"-->
+            <!--android:dividerHeight="0dp"-->
+            <!--android:paddingBottom="1dp"-->
+            <!--android:paddingTop="1dp"/>-->
+
     </android.support.v4.view.ViewPager>
 
 </RelativeLayout>
