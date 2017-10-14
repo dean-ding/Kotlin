@@ -13,7 +13,7 @@ public class ParseData
     {
         if (type.equals(File.separator + NetType.NEWS_TYPE + "&" + NetType.NEWS_TYPE_ITEM.TYPE_NEWS_RECOMMEND))
         {
-            return News.GetRecommendData();
+            return News.INSTANCE.GetRecommendData(NetType.NEWS_TYPE_ITEM.TYPE_NEWS_RECOMMEND, NetType.NEWS_TYPE);
         }
 
         return "";

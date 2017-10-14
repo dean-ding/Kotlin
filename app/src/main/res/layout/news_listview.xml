@@ -25,8 +25,7 @@
             android:layout_height="match_parent"
             android:layout_alignLeft="@+id/list_view_image"
             android:layout_alignParentLeft="true"
-            android:layout_margin="8dp"
-            android:orientation="vertical">
+            android:layout_margin="8dp">
 
             <TextView
                 android:id="@+id/list_view_title"
@@ -38,9 +37,20 @@
 
             <TextView
                 android:id="@+id/list_view_keyword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:textColor="@color/tab_line_color"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/list_view_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/list_view_keyword"
+                android:layout_marginLeft="10dp"
+                android:maxLines="1"
                 android:textColor="@color/tab_line_color"
                 android:textSize="12sp"/>
         </RelativeLayout>
